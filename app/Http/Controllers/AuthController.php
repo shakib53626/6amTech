@@ -21,7 +21,7 @@ class AuthController extends Controller
             ]);
         }
 
-        if ($user->user_type !== 'admin') {
+        if ($user->role !== 'admin') {
             throw ValidationException::withMessages([
                 'email' => 'You are not authorized to access this area.',
             ]);

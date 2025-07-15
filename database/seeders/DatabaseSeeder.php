@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
             "name"     => "Shakibul Islam",
             "email"    => "diu.shakib@gmail.com",
             "phone"    => "01784801663",
+            "role"     => "admin",
             "status"   => "Active",
             "password" => Hash::make('password')
         ]);
 
-        $this->call([ RolePermissionSeeder::class ]);
     }
 }

@@ -1,5 +1,6 @@
 <script setup>
 import { route } from 'ziggy-js'
+import { ChevronDownIcon } from '@/icons';
 import { useSidebar } from '@/Adminend/Composables';
 const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubmenu, isActive } = useSidebar()
 
@@ -52,17 +53,17 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
 
                                 <!-- With Submenu -->
                                 <div v-else>
-                                    <button class="flex menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md" @click="toggleSubmenu(`${groupIndex}-${itemIndex}`)" >
+                                    <button class="flex items-center menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md" @click="toggleSubmenu(`${groupIndex}-${itemIndex}`)" >
                                         <span class="menu-item-icon-inactive me-2">
                                             <component :is="item.icon" />
                                         </span>
 
                                         <span class="menu-item-text font-semibold" v-show="isExpanded || isHovered">{{ item.name }}</span>
-                                        <ChevronDownIcon class="ml-auto w-5 h-5" />
+                                        <ChevronDownIcon class="ml-auto w-5 h-5 pt-1" :class="{ 'rotate-180': openSubmenu === `${groupIndex}-${itemIndex}` }" />
                                     </button>
 
                                     <ul class="mt-2 ml-9 space-y-2" v-show="openSubmenu === `${groupIndex}-${itemIndex}`" >
-                                        <li v-for="sub in item.children" :key="sub.name" class="menu-dropdown-item font-semibold text-gray-600 cursor-pointer" @click="$inertia.visit(route(sub.path))">
+                                        <li v-for="sub in item.children" :key="sub.name" class="menu-dropdown-item font-semibold text-gray-600 cursor-pointer hover:text-orange-400" @click="$navigateTo(sub.path)">
                                             {{ sub.name }}
                                         </li>
                                     </ul>

@@ -15,39 +15,10 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'role',
         'status',
         'password',
     ];
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-
-    public function hasRole($role)
-    {
-        return $this->roles()->where('name', $role)->exists();
-    }
-
-    public function permissions()
-    {
-        return $this->roles()->with('permissions')->get()
-            ->pluck('permissions')
-            ->flatten()
-            ->unique('id')
-            ->values();
-    }
-
-
-    public function hasPermission($permission)
-    {
-        foreach ($this->roles as $role) {
-            if ($role->permissions()->where('name', $permission)->exists()) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     protected $hidden = [
         'password',
