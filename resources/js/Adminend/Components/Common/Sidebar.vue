@@ -31,7 +31,7 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
                 <div class="flex flex-col gap-4">
                     <div v-for="(group, groupIndex) in menuGroups" :key="groupIndex">
 
-                        <h2 class="mb-4 text-xs uppercase flex text-gray-400 justify-start">
+                        <h2 class="mb-4 ms-1 text-xs uppercase flex text-gray-400 justify-start">
                             {{ group.title }}
                         </h2>
 
