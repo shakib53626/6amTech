@@ -1,19 +1,20 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { GridIcon, UserCircleIcon } from '@/icons'
 import { usePage } from '@inertiajs/vue3'
 
-import { GridIcon, CalenderIcon, UserCircleIcon, ListIcon, TableIcon, PageIcon, PieChartIcon, PlugInIcon, BoxCubeIcon } from '@/icons'
+const isMobile     = ref(false)
+const isMobileOpen = ref(false)
+const isExpanded   = ref(true)
+const isHovered    = ref(false)
+const activeItem   = ref(null)
+const openSubmenu  = ref(null)
+
 
 export function useSidebar() {
+
   const page        = usePage()
   const permissions = computed(() => page.props.auth?.user?.permissions || [])
   const routeName   = computed(() => page.props.route?.name || '')
-
-  const isMobile     = ref(false)
-  const isMobileOpen = ref(false)
-  const isExpanded   = ref(true)
-  const isHovered    = ref(false)
-  const activeItem   = ref(null)
-  const openSubmenu  = ref(null)
 
   const handleResize = () => {
     const mobile = window.innerWidth < 768
@@ -64,26 +65,29 @@ export function useSidebar() {
       {
         title: 'Menu',
         items: [
-          { name: 'Dashboard',   icon: GridIcon,      path: 'dashboard',  permission: null },
+          { name: 'Dashboard', icon: GridIcon, path: 'dashboard', permission: null },
 
-          { name: 'User Manage',       icon: UserCircleIcon,
+          {
+            name: 'User Manage', icon: UserCircleIcon,
             children: [
-              { name: 'Permissions',  path: 'permissions', permission: 'permissions-read' },
+              { name: 'Permissions', path: 'permissions', permission: 'permissions-read' },
+              { name: 'Roles',       path: 'roles',       permission: 'roles-read' },
+              { name: 'Users',       path: 'users',       permission: 'users-read' },
             ],
           },
         ],
       },
     ]
 
-    return allMenus.map(group => ({
+    return allMenus.map((group) => ({
       ...group,
       items: group.items
-        .map(item => {
+        .map((item) => {
           if (!item.children) {
             return hasPermission(item.permission) ? item : null
           }
 
-          const filteredChildren = item.children.filter(child =>
+          const filteredChildren = item.children.filter((child) =>
             hasPermission(child.permission)
           )
 
@@ -104,7 +108,7 @@ export function useSidebar() {
     menuGroups.value.forEach((group, groupIndex) => {
       group.items.forEach((item, itemIndex) => {
         if (item.children) {
-          const match = item.children.find(child => child.path === current)
+          const match = item.children.find((child) => child.path === current)
           if (match) opened.push(`${groupIndex}-${itemIndex}`)
         }
       })
@@ -115,24 +119,13 @@ export function useSidebar() {
 
   return {
     // States
-    isMobile,
-    isMobileOpen,
+    isMobile, isMobileOpen, isHovered, activeItem, openSubmenu,
     isExpanded: computed(() => (isMobile.value ? false : isExpanded.value)),
-    isHovered,
-    activeItem,
-    openSubmenu,
 
-    // Actions
-    toggleSidebar,
-    toggleMobileSidebar,
-    setIsHovered,
-    setActiveItem,
-    toggleSubmenu,
+    // Action
+    toggleSidebar, toggleMobileSidebar, setIsHovered, setActiveItem, toggleSubmenu,
 
     // Menu Data
-    menuGroups,
-    activeMenu,
-    defaultOpeneds,
-    isActive,
+    menuGroups,activeMenu,defaultOpeneds,isActive,
   }
 }
