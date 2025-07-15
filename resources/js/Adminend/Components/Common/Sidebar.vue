@@ -1,4 +1,5 @@
 <script setup>
+import { route } from 'ziggy-js'
 import { useSidebar } from '@/Adminend/Composables';
 const {
   menuGroups,
@@ -38,7 +39,7 @@ const {
                 <!-- No Submenu -->
                 <button  v-if="!item.children" class="flex menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md"
                     :class="{ 'bg-orange-100/80 dark:bg-orange-200 text-orange-600': isActive(item.path) }"
-                     @click="$inertia.visit(route(item.path))"
+                     @click="$navigateTo(item.path)"
                 >
                   <span class="menu-item-icon-inactive me-2">
                     <component :is="item.icon" />

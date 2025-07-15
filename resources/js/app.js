@@ -2,6 +2,9 @@ import './bootstrap';
 
 import '../css/app.css'
 import { createApp, h } from 'vue'
+import { navigateTo } from './Utils/navigator'
+import { formatDate } from './Utils/formatDate';
+import { hasPermission } from './Utils/permission';
 import { createInertiaApp, Link } from '@inertiajs/vue3'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import AdminLayout from './Layouts/AdminLayout.vue';
@@ -24,6 +27,9 @@ createInertiaApp({
     const app = createApp({ render: () => h(App, props) })
 
     app.component('Link', Link)
+    app.config.globalProperties.$hasPermission = hasPermission
+    app.config.globalProperties.$navigateTo = navigateTo
+    app.config.globalProperties.$formatDate = formatDate;
     app.use(ZiggyVue)
     app.use(plugin)
     app.mount(el)
