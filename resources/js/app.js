@@ -4,6 +4,7 @@ import '../css/app.css'
 import { createApp, h } from 'vue'
 import { createInertiaApp, Link } from '@inertiajs/vue3'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+import AdminLayout from './Layouts/AdminLayout.vue';
 
 createInertiaApp({
     resolve: name => {
@@ -11,8 +12,7 @@ createInertiaApp({
         const path  = `./${name.replace('/', '/Pages/')}.vue`
         let   page  = pages[path]
 
-        page.default.layout = page.default.layout
-        // || AuthLayout
+        page.default.layout = page.default.layout || AdminLayout
 
         if (!page) {
             throw new Error(`Page not found: ${name} (mapped to ${path})`)

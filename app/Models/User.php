@@ -29,6 +29,16 @@ class User extends Authenticatable
         return $this->roles()->where('name', $role)->exists();
     }
 
+    public function permissions()
+    {
+        return $this->roles()->with('permissions')->get()
+            ->pluck('permissions')
+            ->flatten()
+            ->unique('id')
+            ->values();
+    }
+
+
     public function hasPermission($permission)
     {
         foreach ($this->roles as $role) {

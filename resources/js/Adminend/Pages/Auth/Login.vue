@@ -55,8 +55,8 @@ defineOptions({ layout : FullScreenLayout });
                                     </label>
                                 </div>
 
-                                <Link href="/reset-password" class="text-sm text-brand-500 hover:text-brand-600 dark:text-blue-400" >
-                                    Forgot password?
+                                <Link href="/register" class="text-sm text-brand-500 hover:text-brand-600 dark:text-blue-400" >
+                                    Register
                                 </Link >
                             </div>
                             <!-- Button -->
