@@ -30,7 +30,7 @@ defineOptions({ layout : FullScreenLayout });
                     <form @submit.prevent="login">
                         <div class="space-y-5">
                             <!-- Email -->
-                            <text-input type="email" label="Email" placeholder="info@gmail.com" v-model="form.email" :error="form.errors.email"/>
+                            <text-input type="email" label="Email" placeholder="example@example.com" v-model="form.email" :error="form.errors.email"/>
 
                             <!-- Password -->
                             <text-input type="password" label="Password" placeholder="********" v-model="form.password" :error="form.errors.password"/>
@@ -43,15 +43,12 @@ defineOptions({ layout : FullScreenLayout });
 
                                             <input v-model="form.remember_me" type="checkbox" id="rememberMe" class="sr-only" />
 
-                                            <div :class=" form.remember_me ? 'border-brand-500 bg-brand-500' : 'bg-transparent border-gray-300 dark:border-gray-700' " class="mr-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px]" >
-
-                                            <span :class="form.remember_me ? '' : 'opacity-0'">
-                                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" >
-                                                    <path d="M11.6666 3.5L5.24992 9.91667L2.33325 7" stroke="white" stroke-width="1.94437" stroke-linecap="round" stroke-linejoin="round" />
+                                            <div :class="form.remember_me ? 'bg-brand-500 text-white border-brand-500' : 'border-gray-300 bg-transparent'" class="mr-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px]" >
+                                                <svg v-if="form.remember_me" width="14" height="14" viewBox="0 0 14 14" fill="none" class="text-white">
+                                                    <path d="M11.6666 3.5L5.24992 9.91667L2.33325 7" stroke="orange" stroke-width="1.94437" stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>
-                                            </span>
-
                                             </div>
+
                                         </div>
 
                                         Remember me
