@@ -22,7 +22,7 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
 
         <div class="py-8 flex justify-start">
             <img class="dark:hidden" src="@/images/logo/logo.svg" alt="Logo" width="150" v-if="isExpanded || isHovered"/>
-            <img class="dark:hidden" src="@/images/logo/logo-icon.png" alt="Logo" width="150" v-else/>
+            <img class="dark:hidden" src="@/images/logo/logo-icon.png" alt="Logo" width="45" v-else/>
             <img class="hidden dark:block" src="@/images/logo/logo-dark.svg" alt="Logo" width="150" />
         </div>
 
@@ -59,7 +59,6 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
 
                                         <span class="menu-item-text font-semibold" v-show="isExpanded || isHovered">{{ item.name }}</span>
                                         <ChevronDownIcon class="ml-auto w-5 h-5" />
-
                                     </button>
 
                                     <ul class="mt-2 ml-9 space-y-2" v-show="openSubmenu === `${groupIndex}-${itemIndex}`" >
