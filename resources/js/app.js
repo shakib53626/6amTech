@@ -2,7 +2,8 @@ import './bootstrap';
 
 import '../css/app.css'
 import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp, Link } from '@inertiajs/vue3'
+import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 createInertiaApp({
     resolve: name => {
@@ -10,7 +11,8 @@ createInertiaApp({
         const path  = `./${name.replace('/', '/Pages/')}.vue`
         let   page  = pages[path]
 
-        // page.default.layout = page.default.layout || AuthLayout
+        page.default.layout = page.default.layout
+        // || AuthLayout
 
         if (!page) {
             throw new Error(`Page not found: ${name} (mapped to ${path})`)
@@ -19,8 +21,11 @@ createInertiaApp({
         return page
     },
   setup({ el, App, props, plugin }) {
-    createApp({ render: () => h(App, props) })
-      .use(plugin)
-      .mount(el)
+    const app = createApp({ render: () => h(App, props) })
+
+    app.component('Link', Link)
+    app.use(ZiggyVue)
+    app.use(plugin)
+    app.mount(el)
   },
 })
