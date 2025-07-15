@@ -7,9 +7,11 @@ export function useAuth() {
     const processing = ref(false);
     const logo       = '/storage/logo/6amTech-Primary-Logo.svg'
     const form       = useForm({
-        email      : '',
-        password   : '',
-        remember_me: false,
+        name                 : '',
+        email                : '',
+        password             : '',
+        remember_me          : false,
+        password_confirmation: '',
     });
 
     const emailError = computed(() => {
@@ -51,6 +53,10 @@ export function useAuth() {
         form.post('/login');
     };
 
+    const register = async () => {
+        form.post('/register' );
+    }
+
     watch(
         [() => form.email, () => form.password],
         () => {
@@ -78,5 +84,5 @@ export function useAuth() {
         });
     };
 
-    return { form, logo, processing, login, logout};
+    return { form, logo, processing, login, logout, register};
 }

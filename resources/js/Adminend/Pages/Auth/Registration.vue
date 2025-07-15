@@ -3,7 +3,7 @@ import FullScreenLayout from '@/Layouts/FullScreenLayout.vue';
 import { TextInput } from '@/Adminend/Components';
 import { useAuth } from '@/Adminend/Composables';
 
-const { form, logo, login } = useAuth();
+const { form, logo, register } = useAuth();
 
 defineOptions({ layout : FullScreenLayout });
 </script>
@@ -20,20 +20,26 @@ defineOptions({ layout : FullScreenLayout });
                 </div>
 
                 <div class="mb-5 sm:mb-8">
-                    <h1 class="mb-3 font-semibold text-gray-800 text-3xl dark:text-white/90 sm:text-4xl" > Sign In </h1>
+                    <h1 class="mb-3 font-semibold text-gray-800 text-3xl dark:text-white/90 sm:text-4xl" > Create an Account </h1>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                        Enter your email and password to sign in!
+                        Sign up with your email and password to get started.
                     </p>
                 </div>
 
                 <div>
-                    <form @submit.prevent="login">
+                    <form @submit.prevent="register">
                         <div class="space-y-5">
+                            <!-- Name -->
+                            <text-input type="text" label="Name" placeholder="John Doe" v-model="form.name" :error="form.errors.name"/>
+
                             <!-- Email -->
                             <text-input type="email" label="Email" placeholder="example@example.com" v-model="form.email" :error="form.errors.email"/>
 
                             <!-- Password -->
                             <text-input type="password" label="Password" placeholder="********" v-model="form.password" :error="form.errors.password"/>
+
+                            <!-- Confirm Password -->
+                            <text-input type="password" label="Confirm Password" placeholder="********" v-model="form.password_confirmation" :error="form.errors.password_confirmation" />
 
                             <!-- Checkbox -->
                             <div class="flex items-center justify-between">
@@ -55,8 +61,8 @@ defineOptions({ layout : FullScreenLayout });
                                     </label>
                                 </div>
 
-                                <Link href="/register" class="text-sm text-brand-500 hover:text-brand-600 text-blue-400" >
-                                    Registration
+                                <Link href="/login" class="text-sm text-brand-500 hover:text-brand-600 text-blue-400" >
+                                    Login
                                 </Link >
                             </div>
                             <!-- Button -->
@@ -68,7 +74,7 @@ defineOptions({ layout : FullScreenLayout });
                                         Loading...
                                     </span>
 
-                                    <span v-else>Sign In</span>
+                                    <span v-else>Sign Up</span>
                                 </button>
                             </div>
 

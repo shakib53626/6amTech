@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
@@ -21,16 +22,26 @@ class AuthController extends Controller
             ]);
         }
 
-        if ($user->role !== 'admin') {
-            throw ValidationException::withMessages([
-                'email' => 'You are not authorized to access this area.',
-            ]);
-        }
-
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->intended('/')->with('success', 'Login successful!');
+        return redirect()->intended('/admin/dashboard')->with('success', 'Login successful!');
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'phone'    => $request->phone,
+            'role'     => 'user',
+            'status'   => 'Active',
+            'password' => Hash::make($request->password),
+        ]);
+
+        Auth::login($user);
+        $request->session()->regenerate();
+        return redirect()->intended('/user/dashboard')->with('success', 'Registration successful!');
     }
 
     public function logout(Request $request)
