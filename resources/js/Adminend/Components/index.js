@@ -9,6 +9,8 @@ export { default as SearchBar        } from './Common/SearchBar.vue';
 export { default as HeaderLogo       } from './Common/HeaderLogo.vue';
 export { default as NotificationMenu } from './Common/NotificationMenu.vue';
 export { default as UserMenu         } from './Common/UserMenu.vue';
+export { default as BasicTable       } from './Common/BasicTable.vue';
+export { default as Button           } from './Common/Button.vue';
 
 // Dashboard Components Export
 export { default as EcommerceMetrics } from './Dashboard/EcommerceMetrics.vue';

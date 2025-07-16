@@ -1,10 +1,9 @@
 <?php
 
-namespace Shakib\UserModule\Manager\Eloquent;
+namespace App\Manager\Eloquent;
 
 
 use App\Models\User;
-use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Manager\UserManagerInterface;
 use Illuminate\Support\Facades\Storage;
@@ -13,62 +12,43 @@ class UserManager implements UserManagerInterface
 {
     public function index($request)
     {
-        try {
-            $paginateSize = $request->input('paginate_size') ?? 50;
+        $paginateSize = $request->input('paginate_size') ?? 50;
 
-            $roles = Role::orderBy("name", "ASC")->get();
-            $query = User::query();
+        $query = User::query();
 
-            if ($request->filled('search_key')) {
-                $query->where('name', 'like', '%' . $request->input('search_key') . '%');
-            }
-
-            if ($request->input('is_trashed') === 'only') {
-                $query->onlyTrashed();
-            } elseif ($request->input('is_trashed') === 'with') {
-                $query->withTrashed();
-            }
-
-            return [
-                "users" => $query->orderBy('created_at', 'desc')->with('roles', 'deletedBy:id,name')->paginate($paginateSize),
-                "roles" => $roles
-            ];
-
-        } catch (\Exception $exception) {
-            throw $exception;
+        if ($request->filled('search_key')) {
+            $query->where('name', 'like', '%' . $request->input('search_key') . '%');
         }
+
+        return  $query->orderBy('created_at', 'desc')->paginate($paginateSize);
     }
 
     public function store($request){
-        try {
-            $user = new User();
-            $user->name     = $request->name;
-            $user->email    = $request->email;
-            $user->phone    = $request->phone;
-            $user->address  = $request->address;
-            $user->password = Hash::make($request->password);
 
-            // Handle image upload
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        $user = new User();
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->phone    = $request->phone;
+        $user->address  = $request->address;
+        $user->password = Hash::make($request->password);
 
-                if (!Storage::disk('public')->exists('users')) {
-                    Storage::disk('public')->makeDirectory('users');
-                }
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-                $image->storeAs('users', $filename, 'public');
-                $user->image = '/storage/users/' . $filename;
+            if (!Storage::disk('public')->exists('users')) {
+                Storage::disk('public')->makeDirectory('users');
             }
 
-            $user->save();
-
-            $user->syncRoles($request->role_ids ?? []);
-
-            return $user;
-        } catch (\Exception $exception) {
-            throw $exception;
+            $image->storeAs('users', $filename, 'public');
+            $user->image = '/storage/users/' . $filename;
         }
+
+        $user->save();
+
+        return $user;
+
     }
 
     public function update($id, $request){

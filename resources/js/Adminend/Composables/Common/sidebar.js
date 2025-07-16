@@ -70,7 +70,14 @@ export function useSidebar() {
           {
             name: 'User Manage', icon: UserCircleIcon,
             children: [
-              { name: 'Users',       path: 'users',       permission: null       },
+              { name: 'Users',       path: 'admin.users.index',       permission: null       },
+            ],
+          },
+
+          {
+            name: 'Product Manage', icon: UserCircleIcon,
+            children: [
+              { name: 'Products',       path: 'admin.products',       permission: null       },
             ],
           },
         ],
@@ -95,25 +102,29 @@ export function useSidebar() {
     }))
   })
 
-  const isActive = (routes) => routes.includes(routeName.value)
+    const isActive = (routes) => routes.includes(routeName.value)
 
-  const activeMenu = computed(() => routeName.value)
+    const isChildActive = (children) => {
+        return children?.some(child => routeName.value === child.path)
+    }
 
-  const defaultOpeneds = computed(() => {
-    const current = routeName.value
-    const opened = []
+    const activeMenu = computed(() => routeName.value)
 
-    menuGroups.value.forEach((group, groupIndex) => {
-      group.items.forEach((item, itemIndex) => {
-        if (item.children) {
-          const match = item.children.find((child) => child.path === current)
-          if (match) opened.push(`${groupIndex}-${itemIndex}`)
-        }
-      })
+    const defaultOpeneds = computed(() => {
+        const current = routeName.value
+        const opened = []
+
+        menuGroups.value.forEach((group, groupIndex) => {
+            group.items.forEach((item, itemIndex) => {
+                if (item.children) {
+                    const match = item.children.find((child) => child.path === current)
+                    if (match) opened.push(`${groupIndex}-${itemIndex}`)
+                }
+            })
+        })
+
+        return opened
     })
-
-    return opened
-  })
 
   return {
     // States
@@ -124,6 +135,6 @@ export function useSidebar() {
     toggleSidebar, toggleMobileSidebar, setIsHovered, setActiveItem, toggleSubmenu,
 
     // Menu Data
-    menuGroups,activeMenu,defaultOpeneds,isActive,
+    menuGroups, activeMenu, defaultOpeneds, isActive, isChildActive
   }
 }
