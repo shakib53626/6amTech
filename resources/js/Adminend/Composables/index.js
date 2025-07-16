@@ -10,3 +10,4 @@ export * from './Header/userMenu.js'
 // Dashboard composables
 export * from './Dashboard/dropdownMenu.js';
 export * from './Dashboard/monthlyTarget.js';
+export * from './Dashboard/statisticsChart.js';

@@ -1,5 +1,5 @@
 <script setup>
-import { EcommerceMetrics, MonthlyTarget, MonthlySale } from '@/Adminend/Components';
+import { EcommerceMetrics, MonthlyTarget, MonthlySale, StatisticsChart } from '@/Adminend/Components';
 
 </script>
 
@@ -15,11 +15,11 @@ import { EcommerceMetrics, MonthlyTarget, MonthlySale } from '@/Adminend/Compone
             <monthly-target />
         </div>
 
-        <!-- <div class="col-span-12">
+        <div class="col-span-12">
             <statistics-chart />
         </div>
 
-        <div class="col-span-12 xl:col-span-5">
+        <!-- <div class="col-span-12 xl:col-span-5">
             <customer-demographic />
         </div>
 
