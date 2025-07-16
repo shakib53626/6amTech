@@ -5,7 +5,7 @@ const { isExpanded, isHovered } = useSidebar()
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100/50 dark:bg-gray-800 xl:flex">
+  <div class="min-h-screen bg-gray-100/50 dark:bg-gray-900 xl:flex">
     <Sidebar />
     <Backdrop />
     <div class="flex-1 transition-all duration-300 ease-in-out" :class="[isExpanded || isHovered ? 'lg:ml-[290px]' : 'lg:ml-[83px]']" >

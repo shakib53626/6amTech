@@ -15,7 +15,7 @@
         </button>
 
         <!-- Dropdown Start -->
-        <div v-if="dropdownOpen" class="absolute -right-[240px] mt-[17px] flex h-[480px] w-[350px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark sm:w-[361px] lg:right-0">
+        <div v-if="dropdownOpen" class="absolute z-50 -right-[240px] mt-[17px] flex h-[480px] w-[350px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark sm:w-[361px] lg:right-0">
 
         <div class="flex items-center justify-between pb-3 mb-3 border-b border-gray-100 dark:border-gray-800" >
             <h5 class="text-lg font-semibold text-gray-800 dark:text-white/90">Notification</h5>

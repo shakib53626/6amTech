@@ -41,7 +41,7 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
 
                                 <!-- No Submenu -->
                                 <button  v-if="!item.children" class="flex menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md"
-                                    :class="{ 'bg-orange-100/80 dark:bg-orange-200 text-orange-600': isActive(item.path) }"
+                                    :class="{ 'bg-orange-100/80 dark:bg-orange-200/15 text-orange-600': isActive(item.path) }"
                                     @click="$navigateTo(item.path)"
                                 >
                                     <span class="menu-item-icon-inactive me-2">
@@ -53,7 +53,7 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
 
                                 <!-- With Submenu -->
                                 <div v-else>
-                                    <button class="flex items-center menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md" @click="toggleSubmenu(`${groupIndex}-${itemIndex}`)" >
+                                    <button class="flex items-center menu-item group w-full lg:justify-start text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md" @click="toggleSubmenu(`${groupIndex}-${itemIndex}`)" >
                                         <span class="menu-item-icon-inactive me-2">
                                             <component :is="item.icon" />
                                         </span>
