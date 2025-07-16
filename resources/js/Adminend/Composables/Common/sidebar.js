@@ -65,14 +65,12 @@ export function useSidebar() {
       {
         title: 'Menu',
         items: [
-          { name: 'Dashboard', icon: GridIcon, path: 'dashboard', permission: null },
+          { name: 'Dashboard', icon: GridIcon, path: 'admin.dashboard', permission: null },
 
           {
             name: 'User Manage', icon: UserCircleIcon,
             children: [
-              { name: 'Permissions', path: 'permissions', permission: 'permissions-read' },
-              { name: 'Roles',       path: 'roles',       permission: 'roles-read' },
-              { name: 'Users',       path: 'users',       permission: 'users-read' },
+              { name: 'Users',       path: 'users',       permission: null       },
             ],
           },
         ],
