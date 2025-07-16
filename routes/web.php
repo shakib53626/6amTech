@@ -20,7 +20,14 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin routes
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/', fn () => Inertia::render('Adminend/Dashboard'))->name('dashboard');
-    Route::get('/dashboard', fn () => Inertia::render('Adminend/Dashboard'));
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/dashboard', fn () => Inertia::render('Adminend/Dashboard'))->name('dashboard');
+});
+
+
+// User routes
+Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(function () {
+
+    Route::get('/dashboard', fn () => Inertia::render('Frontend/Dashboard'))->name('dashboard');
 });

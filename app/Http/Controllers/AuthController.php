@@ -25,7 +25,11 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->intended('/admin/dashboard')->with('success', 'Login successful!');
+        if ($user->role === 'admin') {
+            return redirect('/admin/dashboard')->with('success', 'Login successful!');
+        }
+
+        return redirect('/user/dashboard')->with('success', 'Login successful!');
     }
 
     public function register(RegisterRequest $request)

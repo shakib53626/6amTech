@@ -4,3 +4,5 @@ export * from './Auth/auth.js';
 export * from './Common/sidebar.js';
 export * from './Common/theme.js';
 
+// Header composables
+export * from './Header/userMenu.js'
