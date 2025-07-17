@@ -16,8 +16,10 @@ class UserManager implements UserManagerInterface
 
         $query = User::query();
 
-        if ($request->filled('search_key')) {
-            $query->where('name', 'like', '%' . $request->input('search_key') . '%');
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->input('search') . '%')
+                  ->orWhere('email', 'like', '%' . $request->input('search') . '%')
+                  ->orWhere('phone', 'like', '%' . $request->input('search') . '%');
         }
 
         return  $query->orderBy('created_at', 'desc')->paginate($paginateSize);

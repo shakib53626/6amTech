@@ -22,7 +22,7 @@ class UserController extends Controller
 
             return inertia("Adminend/Users", [
                 "users"   => $users,
-                'filters' => $request->only(['search_key', 'paginate_size', 'page' => request('page')]),
+                'filters' => $request->only(['search', 'paginate_size', 'page' => request('page')]),
             ]);
         } catch (\Exception $exception) {
             return handleException('User fetching failed', $exception);

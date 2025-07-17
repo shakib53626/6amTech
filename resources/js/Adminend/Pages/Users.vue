@@ -1,5 +1,5 @@
 <script setup>
-import { BasicTable, AddOrEditUser, Button } from '@/Adminend/components'
+import { BasicTable, AddOrEditUser, Button, TextInput } from '@/Adminend/components'
 import { useUser } from '@/Adminend/Composables'
 import { PlusIcon } from '@/icons'
 
@@ -19,6 +19,7 @@ const props = defineProps({
             </h3>
 
             <div class="flex items-center gap-2">
+                <text-input placeholder="Search by name or email" v-model="userState.search" class="w-64" />
                 <Button size="sm" variant="outline" :startIcon="PlusIcon" @click="handleAdd"> Add User </Button>
             </div>
         </div>

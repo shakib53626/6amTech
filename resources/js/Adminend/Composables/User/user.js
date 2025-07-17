@@ -32,11 +32,11 @@ export function useUser(filters = {}){
         userState.value.dialogVisible = true;
     }
 
-    watch( () => [userState.value.search, userState.value.isTrash, userState.value.page, userState.value.paginateSize],
-        ([searchValue, isTrashValue, pageValue, paginateSizeValue]) => {
+    watch( () => [userState.value.search, userState.value.page, userState.value.paginateSize],
+        ([searchValue, pageValue, paginateSizeValue]) => {
+
             router.get(route('admin.users.index'), {
                 search       : searchValue,
-                is_trashed   : isTrashValue,
                 page         : pageValue,
                 paginate_size: paginateSizeValue
             }, {
