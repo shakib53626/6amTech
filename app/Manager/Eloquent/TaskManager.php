@@ -26,10 +26,10 @@ class TaskManager implements TaskManagerInterface
             $query->where('user_id', $request->input('user_id'));
         }
 
-        $query->orderBy('created_at', 'desc')->with('user')->paginate($paginateSize);
+        $tasks = $query->orderBy('created_at', 'desc')->with('user')->paginate($paginateSize);
 
         return [
-            'tasks' => $query,
+            'tasks' => $tasks,
             'users' => $users,
         ];
     }

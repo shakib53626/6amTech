@@ -7,6 +7,7 @@ use Inertia\Inertia;
 // Guest routes
 Route::middleware('guest')->group(function () {
 
+    Route::get('/', fn () => redirect()->route('login'));
     Route::get('/login', fn () => Inertia::render('Adminend/Auth/Login'))->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 

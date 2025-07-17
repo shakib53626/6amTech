@@ -9,6 +9,8 @@ use Inertia\Inertia;
 // Admin routes
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
 
+
+    Route::get('/', fn () => redirect()->route('admin.dashboard'));
     Route::get('/dashboard', fn () => Inertia::render('Adminend/Dashboard'))->name('dashboard');
 
     // Users

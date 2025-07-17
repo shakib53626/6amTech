@@ -1,5 +1,5 @@
 <script setup>
-import { BasicTable, AddOrEditUser, Button, TextInput } from '@/Adminend/components'
+import { BasicTable, AddOrEditUser, Button, TextInput, Pagination } from '@/Adminend/components'
 import { useUser } from '@/Adminend/Composables'
 import { PlusIcon } from '@/icons'
 
@@ -100,6 +100,8 @@ const props = defineProps({
                         </tr>
                     </tbody>
                 </basic-table>
+
+                <Pagination :data="users" :style="userState" />
             </div>
         </div>
     </div>

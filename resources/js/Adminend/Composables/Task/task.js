@@ -23,7 +23,7 @@ export function useTask(filters = {}){
         completed  : "Incomplete",
         due_date   : '',
         priority   : 'Low',
-        status     : 'Inactive',
+        status     : '',
         category   : '',
         user_id    : ''
     })
@@ -58,6 +58,15 @@ export function useTask(filters = {}){
         });
     };
 
+    const formatDateLocal = (date) => {
+        if (!date) return ''
+        const d = new Date(date)
+        const year = d.getFullYear()
+        const month = String(d.getMonth() + 1).padStart(2, '0')
+        const day = String(d.getDate()).padStart(2, '0')
+        return `${year}-${month}-${day}`
+    }
+
     const edit = (task) =>{
 
         form.id          = task?.id;
@@ -65,7 +74,7 @@ export function useTask(filters = {}){
         form.title       = task?.title;
         form.description = task?.description;
         form.completed   = task?.completed;
-        form.due_date    = task?.due_date;
+        form.due_date    = formatDateLocal(task?.due_date);
         form.priority    = task?.priority;
         form.status      = task?.status;
         form.category    = task?.category;

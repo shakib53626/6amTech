@@ -13,6 +13,7 @@ export { default as BasicTable       } from './Common/BasicTable.vue';
 export { default as Button           } from './Common/Button.vue';
 export { default as UploadImage      } from './Common/UploadImage.vue';
 export { default as SelectOptions    } from './Common/SelectOptions.vue';
+export { default as Pagination       } from './Common/Pagination.vue'
 
 // Dashboard Components Export
 export { default as EcommerceMetrics } from './Dashboard/EcommerceMetrics.vue';
