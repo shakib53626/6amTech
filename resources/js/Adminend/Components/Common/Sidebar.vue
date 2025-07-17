@@ -21,7 +21,7 @@ const { menuGroups, isExpanded, activeMenu, isMobileOpen, defaultOpeneds, isHove
         @mouseleave="isHovered = false"
     >
 
-        <div class="py-8 flex justify-start">
+        <div class="py-8 flex justify-start cursor-pointer" @click="$navigateTo('admin.dashboard')">
             <img class="dark:hidden" src="@/images/logo/logo.svg" alt="Logo" width="150" v-if="isExpanded || isHovered"/>
             <img class="dark:hidden" src="@/images/logo/logo-icon.png" alt="Logo" width="45" v-else/>
             <img class="hidden dark:block" src="@/images/logo/logo-dark.svg" alt="Logo" width="150" />

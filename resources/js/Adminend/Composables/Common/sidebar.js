@@ -1,5 +1,5 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { GridIcon, UserCircleIcon, ListIcon } from '@/icons'
+import { GridIcon, UserCircleIcon, ListIcon, TaskIcon } from '@/icons'
 import { usePage } from '@inertiajs/vue3'
 
 const isMobile     = ref(false)
@@ -75,9 +75,18 @@ export function useSidebar() {
           },
 
           {
-            name: 'Task Manage', icon: ListIcon,
+            name: 'Task Manage', icon: TaskIcon,
             children: [
                 { name: 'Tasks',       path: 'admin.tasks.index',       permission: null       },
+            ],
+          },
+
+          {
+            name: 'Inventory Manage', icon: ListIcon,
+            children: [
+                { name: 'Categories',       path: 'admin.categories.index',       permission: null       },
+                { name: 'Products',         path: 'admin.products.index',         permission: null       },
+                { name: 'Transactions',     path: 'admin.transactions.index',     permission: null       },
             ],
           },
         ],
