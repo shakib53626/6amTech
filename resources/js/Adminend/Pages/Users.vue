@@ -1,6 +1,9 @@
 <script setup>
-import { BasicTable, Button } from '@/Adminend/components'
+import { BasicTable, AddOrEditUser, Button } from '@/Adminend/components'
+import { useUser } from '@/Adminend/Composables'
 import { PlusIcon } from '@/icons'
+
+const { userState, form, submit, edit, destroy, handleAdd } = useUser()
 
 const props = defineProps({
     users: Object
@@ -16,7 +19,7 @@ const props = defineProps({
             </h3>
 
             <div class="flex items-center gap-2">
-                <Button size="sm" variant="outline" :startIcon="PlusIcon"> Add User </Button>
+                <Button size="sm" variant="outline" :startIcon="PlusIcon" @click="handleAdd"> Add User </Button>
             </div>
         </div>
 
@@ -31,11 +34,11 @@ const props = defineProps({
                             </th>
 
                             <th class="px-5 py-3 text-left w-2/11 sm:px-6">
-                                <p class="font-semibold text-gray-500 text-theme-xs dark:text-gray-400">Project Name</p>
+                                <p class="font-semibold text-gray-500 text-theme-xs dark:text-gray-400">Phone Number</p>
                             </th>
 
                             <th class="px-5 py-3 text-left w-2/11 sm:px-6">
-                                <p class="font-semibold text-gray-500 text-theme-xs dark:text-gray-400">Team</p>
+                                <p class="font-semibold text-gray-500 text-theme-xs dark:text-gray-400">Email</p>
                             </th>
 
                             <th class="px-5 py-3 text-left w-2/11 sm:px-6">
@@ -43,7 +46,7 @@ const props = defineProps({
                             </th>
 
                             <th class="px-5 py-3 text-left w-2/11 sm:px-6">
-                                <p class="font-semibold text-gray-500 text-theme-xs dark:text-gray-400">Budget</p>
+                                <p class="font-semibold text-gray-500 text-theme-xs dark:text-gray-400">Actions</p>
                             </th>
                         </tr>
                     </thead>
@@ -66,39 +69,32 @@ const props = defineProps({
                                     </div>
                                 </div>
                             </td>
+
                             <td class="px-5 py-4 sm:px-6">
-                            <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ user.project }}</p>
+                                <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ user.phone }}</p>
                             </td>
+
                             <td class="px-5 py-4 sm:px-6">
-                            <div class="flex -space-x-2">
-                                <div
-                                v-for="(member, memberIndex) in user.team"
-                                :key="memberIndex"
-                                class="w-6 h-6 overflow-hidden border-2 border-white rounded-full dark:border-gray-900"
+                                <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ user.email }}</p>
+                            </td>
+
+                            <td class="px-5 py-4 sm:px-6">
+                                <span
+                                    :class="[
+                                        'rounded-full px-2 py-0.5 text-theme-xs font-semibold',
+                                        {
+                                            'bg-green-50 text-green-700 dark:bg-green-500/15 dark:text-green-500': user.status === 'Active',
+                                            'bg-red-50 text-red-700 dark:bg-red-500/15 dark:text-red-500': user.status === 'Inactive',
+                                        },
+                                    ]"
                                 >
-                                <img :src="member" alt="team member" />
-                                </div>
-                            </div>
+                                    {{ user.status }}
+                                </span>
                             </td>
                             <td class="px-5 py-4 sm:px-6">
-                            <span
-                                :class="[
-                                'rounded-full px-2 py-0.5 text-theme-xs font-semibold',
-                                {
-                                    'bg-success-50 text-success-700 dark:bg-success-500/15 dark:text-success-500':
-                                    user.status === 'Active',
-                                    'bg-warning-50 text-warning-700 dark:bg-warning-500/15 dark:text-warning-400':
-                                    user.status === 'Pending',
-                                    'bg-error-50 text-error-700 dark:bg-error-500/15 dark:text-error-500':
-                                    user.status === 'Cancel',
-                                },
-                                ]"
-                            >
-                                {{ user.status }}
-                            </span>
-                            </td>
-                            <td class="px-5 py-4 sm:px-6">
-                            <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ user.budget }}</p>
+                                <el-button type="primary" plain @click="edit(user)">  Edit </el-button>
+
+                                <el-button type="danger" @click="destroy(user?.id)" plain> Delete </el-button>
                             </td>
                         </tr>
                     </tbody>
@@ -106,4 +102,7 @@ const props = defineProps({
             </div>
         </div>
     </div>
+
+    <!-- Add Or Edit User Dialog -->
+    <AddOrEditUser :userState="userState" :form="form" :submit="submit"/>
 </template>

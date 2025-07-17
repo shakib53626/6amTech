@@ -22,6 +22,12 @@ class AuthController extends Controller
             ]);
         }
 
+        if ($user->status !== 'Active') {
+            throw ValidationException::withMessages([
+                'email' => 'Your account is deactivated.',
+            ]);
+        }
+
         Auth::login($user);
         $request->session()->regenerate();
 

@@ -1,13 +1,15 @@
 import './bootstrap';
 
 import '../css/app.css'
-import { createApp, h } from 'vue'
+import 'element-plus/dist/index.css'
+import ElementPlus from 'element-plus'
 import { navigateTo } from './Utils/navigator'
 import { formatDate } from './Utils/formatDate';
 import { hasPermission } from './Utils/permission';
+import AdminLayout from './Layouts/AdminLayout.vue';
 import { createInertiaApp, Link } from '@inertiajs/vue3'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
-import AdminLayout from './Layouts/AdminLayout.vue';
+import { createApp, h, defineAsyncComponent } from 'vue'
 
 createInertiaApp({
     resolve: name => {
@@ -30,6 +32,7 @@ createInertiaApp({
     app.config.globalProperties.$hasPermission = hasPermission
     app.config.globalProperties.$navigateTo = navigateTo
     app.config.globalProperties.$formatDate = formatDate;
+    app.use(ElementPlus)
     app.use(ZiggyVue)
     app.use(plugin)
     app.mount(el)

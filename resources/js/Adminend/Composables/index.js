@@ -3,6 +3,8 @@ export * from './Auth/auth.js';
 // Common composables can be added here
 export * from './Common/sidebar.js';
 export * from './Common/theme.js';
+export * from './Common/common.js';
+export * from './Common/notifications.js';
 
 // Header composables
 export * from './Header/userMenu.js'
@@ -11,3 +13,6 @@ export * from './Header/userMenu.js'
 export * from './Dashboard/dropdownMenu.js';
 export * from './Dashboard/monthlyTarget.js';
 export * from './Dashboard/statisticsChart.js';
+
+// User composables
+export * from './User/user.js';
