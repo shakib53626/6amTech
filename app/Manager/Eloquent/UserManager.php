@@ -74,8 +74,8 @@ class UserManager implements UserManagerInterface
                 Storage::disk('public')->makeDirectory('users');
             }
 
-            if ($user->image && Storage::disk('public')->exists($user->image)) {
-                Storage::disk('public')->delete($user->image);
+            if ($user->image && Storage::disk('public')->exists(str_replace('/storage/', '', $user->image))) {
+                Storage::disk('public')->delete(str_replace('/storage/', '', $user->image));
             }
 
             $image->storeAs('users', $filename, 'public');

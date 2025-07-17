@@ -20,10 +20,13 @@ export { default as EcommerceMetrics } from './Dashboard/EcommerceMetrics.vue';
 export { default as MonthlyTarget    } from './Dashboard/MonthlyTarget.vue';
 export { default as DropdownMenu     } from './Dashboard/DropdownMenu.vue';
 export { default as MonthlySale      } from './Dashboard/MonthlySale.vue';
-export { default as StatisticsChart   } from './Dashboard/StatisticsChart.vue';
+export { default as StatisticsChart  } from './Dashboard/StatisticsChart.vue';
 
 // User Components Export
 export { default as AddOrEditUser    } from './User/AddOrEditUser.vue';
 
 // Task Components Export
 export { default as AddOrEditTask    } from './Task/AddOrEditTask.vue';
+
+// Category Components Export
+export { default as AddOrEditCategory} from './Category/AddOrEditCategory.vue'

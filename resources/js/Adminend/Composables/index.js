@@ -19,3 +19,6 @@ export * from './User/user.js';
 
 // Task composables
 export * from './Task/task.js';
+
+// Category composables
+export * from './Category/category.js'

@@ -11,7 +11,6 @@ export function useUser(filters = {}){
         dialogVisible: false,
         fileList     : [],
         search       : filters?.search_key || '',
-        isTrash      : filters?.is_trashed || '',
         page         : filters?.current_page || 1,
         paginateSize : filters?.paginate_size || 50
 

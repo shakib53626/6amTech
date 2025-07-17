@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskRequest;
 use App\Manager\TaskManagerInterface;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class TaskController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         try {
             $task = $this->manager->store($request);
@@ -41,7 +42,7 @@ class TaskController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id)
     {
         try {
             $task = $this->manager->update($id, $request);
