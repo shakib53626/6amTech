@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -12,6 +13,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     // Users
     Route::prefix('/users')->name('users.')->controller(UserController::class)->group(function () {
+        Route::get('/',          'index')->name('index');
+        Route::post('/',         'store')->name('store');
+        Route::put('/{id}',      'update')->name('update');
+        Route::delete('/{id}',   'destroy')->name('destroy');
+    });
+
+    // Tasks
+    Route::prefix('/tasks')->name('tasks.')->controller(TaskController::class)->group(function () {
         Route::get('/',          'index')->name('index');
         Route::post('/',         'store')->name('store');
         Route::put('/{id}',      'update')->name('update');

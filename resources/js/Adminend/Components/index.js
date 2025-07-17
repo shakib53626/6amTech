@@ -23,3 +23,6 @@ export { default as StatisticsChart   } from './Dashboard/StatisticsChart.vue';
 
 // User Components Export
 export { default as AddOrEditUser    } from './User/AddOrEditUser.vue';
+
+// Task Components Export
+export { default as AddOrEditTask    } from './Task/AddOrEditTask.vue';

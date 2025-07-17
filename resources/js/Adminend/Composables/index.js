@@ -16,3 +16,6 @@ export * from './Dashboard/statisticsChart.js';
 
 // User composables
 export * from './User/user.js';
+
+// Task composables
+export * from './Task/task.js';
