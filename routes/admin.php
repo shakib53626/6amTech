@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TransactionController;
 
 
 // Admin routes
@@ -41,6 +42,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     // Products
     Route::prefix('/products')->name('products.')->controller(ProductController::class)->group(function () {
+        Route::get('/',          'index')->name('index');
+        Route::post('/',         'store')->name('store');
+        Route::put('/{id}',      'update')->name('update');
+        Route::delete('/{id}',   'destroy')->name('destroy');
+    });
+
+    // Transaction
+    Route::prefix('/transactions')->name('transactions.')->controller(TransactionController::class)->group(function () {
         Route::get('/',          'index')->name('index');
         Route::post('/',         'store')->name('store');
         Route::put('/{id}',      'update')->name('update');

@@ -31,7 +31,7 @@ const screen = window.innerWidth;
                 </select-options>
 
                 <text-input v-model="form.sku"  label="SKU"       placeholder="Product Sku"  :error="form?.errors?.sku"/>
-                <text-input v-model="form.stock" label="Stock"    placeholder="Stock"        :error="form?.errors?.stock"/>
+                <text-input v-model="form.stock" label="Stock"    placeholder="Stock"        :error="form?.errors?.stock" :disabled="true"/>
                 <text-input type="number" v-model="form.price" label="Price" placeholder="Price" :error="form?.errors?.price"/>
                 <text-input type="number" v-model="form.discount" label="Discount" placeholder="Discount" :error="form?.errors?.discount"/>
 

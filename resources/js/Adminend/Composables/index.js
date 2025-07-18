@@ -25,3 +25,6 @@ export * from './Category/category.js'
 
 // Product composables
 export * from './Product/product.js'
+
+// Transaction composables
+export * from './Transaction/transaction.js'

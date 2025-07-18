@@ -33,3 +33,6 @@ export { default as AddOrEditCategory} from './Category/AddOrEditCategory.vue'
 
 // Products Component Export
 export { default as AddOrEditProduct } from './Product/AddOrEditProduct.vue'
+
+// Transaction Component Export
+export { default as AddOrEditTransaction } from './Transaction/AddOrEditTransaction.vue'
