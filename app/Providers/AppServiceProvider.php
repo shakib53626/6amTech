@@ -14,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind( 'App\Manager\UserManagerInterface',     'App\Manager\Eloquent\UserManager'     );
         $this->app->bind( 'App\Manager\TaskManagerInterface',     'App\Manager\Eloquent\TaskManager'     );
         $this->app->bind( 'App\Manager\CategoryManagerInterface', 'App\Manager\Eloquent\CategoryManager' );
+        $this->app->bind( 'App\Manager\ProductManagerInterface',  'App\Manager\Eloquent\ProductManager'  );
     }
 
     /**

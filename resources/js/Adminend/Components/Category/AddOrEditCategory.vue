@@ -2,9 +2,9 @@
 import { computed } from 'vue';
 import { TextInput, UploadImage, SelectOptions } from '@/Adminend/Components';
 const props = defineProps({
-    categoryState: { type: Object, default: false },
-    form     : { type: Object },
-    submit   : { type: Function },
+    categoryState: { type: Object},
+    form         : { type: Object },
+    submit       : { type: Function },
 });
 
 const handleClose = () => {
@@ -17,7 +17,7 @@ const handleClose = () => {
 </script>
 
 <template>
-    <el-dialog class="dark:bg-gray-900" v-model="categoryState.dialogVisible" :title="form.id ? `Edit User - ${form?.name}` : 'Add new user'" width="600" @close="handleClose">
+    <el-dialog class="dark:bg-gray-900" v-model="categoryState.dialogVisible" :title="form.id ? `Edit Product - ${form?.name}` : 'Add new product'" width="600" @close="handleClose">
 
         <el-form :model="form" label-position="top">
 
@@ -31,7 +31,7 @@ const handleClose = () => {
 
             </div>
 
-            <upload-image v-model="categoryState.fileList" label="Profile Image"/>
+            <upload-image v-model="categoryState.fileList" :form="form" label="Profile Image"/>
         </el-form>
 
         <template #footer>

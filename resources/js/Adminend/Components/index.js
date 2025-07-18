@@ -30,3 +30,6 @@ export { default as AddOrEditTask    } from './Task/AddOrEditTask.vue';
 
 // Category Components Export
 export { default as AddOrEditCategory} from './Category/AddOrEditCategory.vue'
+
+// Products Component Export
+export { default as AddOrEditProduct } from './Product/AddOrEditProduct.vue'

@@ -22,3 +22,6 @@ export * from './Task/task.js';
 
 // Category composables
 export * from './Category/category.js'
+
+// Product composables
+export * from './Product/product.js'

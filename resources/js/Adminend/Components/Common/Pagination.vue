@@ -7,7 +7,7 @@ const props = defineProps({
 
 <template>
     <el-card shadow="never" class="mt-2">
-        <div class="flex justify-between items-center">
+        <div class="block md:flex justify-between items-center">
             <el-pagination size="small" background layout="prev, pager, next" :current-page="data.current_page" :page-size="data.per_page" :total="data?.total" @current-change="val => state.page = val" class="mt-4" />
 
             <el-text type="info">

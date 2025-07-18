@@ -21,10 +21,11 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             "name"   => ['required'],
             "status" => ['required'],
-            "image"  => ['nullable', 'image']
+            "image"  => [ $this->method() == 'POST' ? 'required' : 'nullable', 'image']
         ];
     }
 }
