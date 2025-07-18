@@ -68,27 +68,27 @@ export function useSidebar() {
           { name: 'Dashboard', icon: GridIcon, path: 'admin.dashboard', permission: null },
 
           {
-            name: 'User Manage', icon: UserCircleIcon,
-            children: [
-              { name: 'Users',       path: 'admin.users.index',       permission: null       },
-            ],
-          },
+              name: 'User Manage', icon: UserCircleIcon,
+              children: [
+                  { name: 'Users',       path: 'admin.users.index',       permission: null       },
+                ],
+            },
 
-          {
-            name: 'Task Manage', icon: TaskIcon,
-            children: [
-                { name: 'Tasks',       path: 'admin.tasks.index',       permission: null       },
-            ],
-          },
+            {
+                name: 'Task Manage', icon: TaskIcon,
+                children: [
+                    { name: 'Tasks',       path: 'admin.tasks.index',       permission: null       },
+                ],
+            },
 
-          {
-            name: 'Inventory Manage', icon: ListIcon,
-            children: [
-                { name: 'Categories',       path: 'admin.categories.index',       permission: null       },
-                { name: 'Products',         path: 'admin.products.index',         permission: null       },
-                { name: 'Transactions',     path: 'admin.transactions.index',     permission: null       },
-            ],
-          },
+            {
+                name: 'Inventory Manage', icon: ListIcon,
+                children: [
+                    { name: 'Categories',       path: 'admin.categories.index',       permission: null       },
+                    { name: 'Products',         path: 'admin.products.index',         permission: null       },
+                    { name: 'Transactions',     path: 'admin.transactions.index',     permission: null       },
+                ],
+            },
         ],
       },
     ]

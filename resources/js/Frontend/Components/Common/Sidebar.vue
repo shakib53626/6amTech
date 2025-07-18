@@ -1,8 +1,11 @@
 <script setup>
 import { route } from 'ziggy-js'
-import { ChevronDownIcon } from '@/icons';
-import { useSidebar } from '@/Adminend/Composables';
-const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubmenu, isActive } = useSidebar()
+import { ChevronDownIcon, LogoutIcon } from '@/icons';
+import { useSidebar } from '@/Frontend/Composables';
+import { useUserDropdown } from '@/Adminend/Composables';
+
+const { signOut } = useUserDropdown()
+const { menuGroups, isExpanded, activeMenu, isMobileOpen, defaultOpeneds, isHovered, openSubmenu, toggleSubmenu, isActive, isChildActive } = useSidebar()
 
 </script>
 
@@ -21,7 +24,7 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
         @mouseleave="isHovered = false"
     >
 
-        <div class="py-8 flex justify-start">
+        <div class="py-8 flex justify-start cursor-pointer" @click="$navigateTo('users.dashboard')">
             <img class="dark:hidden" src="@/images/logo/logo.svg" alt="Logo" width="150" v-if="isExpanded || isHovered"/>
             <img class="dark:hidden" src="@/images/logo/logo-icon.png" alt="Logo" width="45" v-else/>
             <img class="hidden dark:block" src="@/images/logo/logo-dark.svg" alt="Logo" width="150" />
@@ -41,7 +44,7 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
 
                                 <!-- No Submenu -->
                                 <button  v-if="!item.children" class="flex menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md"
-                                    :class="{ 'bg-orange-100/80 dark:bg-orange-200 text-orange-600': isActive(item.path) }"
+                                    :class="{ 'bg-orange-100/80 dark:bg-orange-200/15 text-orange-600': isActive(item.path) }"
                                     @click="$navigateTo(item.path)"
                                 >
                                     <span class="menu-item-icon-inactive me-2">
@@ -53,17 +56,22 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
 
                                 <!-- With Submenu -->
                                 <div v-else>
-                                    <button class="flex items-center menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md" @click="toggleSubmenu(`${groupIndex}-${itemIndex}`)" >
+
+                                    <button class="flex items-center menu-item group w-full lg:justify-start text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md" @click="toggleSubmenu(`${groupIndex}-${itemIndex}`)"
+                                        :class="{ 'bg-orange-100/80 dark:bg-orange-200/15 text-orange-600': isChildActive(item.children) }"
+                                    >
                                         <span class="menu-item-icon-inactive me-2">
                                             <component :is="item.icon" />
                                         </span>
 
                                         <span class="menu-item-text font-semibold" v-show="isExpanded || isHovered">{{ item.name }}</span>
-                                        <ChevronDownIcon class="ml-auto w-5 h-5 pt-1" :class="{ 'rotate-180': openSubmenu === `${groupIndex}-${itemIndex}` }" />
+                                        <ChevronDownIcon class="ml-auto w-5 h-5 pt-1" :class="{ 'rotate-180': openSubmenu === `${groupIndex}-${itemIndex}` || defaultOpeneds.includes(`${groupIndex}-${itemIndex}`) }" />
                                     </button>
 
-                                    <ul class="mt-2 ml-9 space-y-2" v-show="openSubmenu === `${groupIndex}-${itemIndex}`" >
-                                        <li v-for="sub in item.children" :key="sub.name" class="menu-dropdown-item font-semibold text-gray-600 cursor-pointer hover:text-orange-400" @click="$navigateTo(sub.path)">
+                                    <ul class="mt-2 ml-9 space-y-2" v-show="openSubmenu === `${groupIndex}-${itemIndex}` || defaultOpeneds.includes(`${groupIndex}-${itemIndex}`)" >
+                                        <li v-for="sub in item.children" :key="sub.name" class="menu-dropdown-item font-semibold text-gray-600 cursor-pointer hover:text-orange-400" @click="$navigateTo(sub.path)"
+                                            :class="{ 'text-orange-600': isActive(sub.path) }"
+                                        >
                                             {{ sub.name }}
                                         </li>
                                     </ul>
@@ -73,6 +81,20 @@ const { menuGroups, isExpanded, isMobileOpen, isHovered, openSubmenu, toggleSubm
                             </li>
                         </ul>
 
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li>
+                                <button class="flex menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md" @click="signOut">
+                                    <span class="menu-item-icon-inactive me-2">
+                                        <component :is="LogoutIcon" />
+                                    </span>
+
+                                    <span class="menu-item-text font-semibold" v-show="isExpanded || isHovered">Log Out</span>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>

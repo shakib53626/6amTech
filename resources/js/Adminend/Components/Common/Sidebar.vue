@@ -1,7 +1,9 @@
 <script setup>
 import { route } from 'ziggy-js'
-import { ChevronDownIcon } from '@/icons';
-import { useSidebar } from '@/Adminend/Composables';
+import { ChevronDownIcon, LogoutIcon } from '@/icons';
+import { useSidebar, useUserDropdown } from '@/Adminend/Composables';
+
+const { signOut } = useUserDropdown()
 const { menuGroups, isExpanded, activeMenu, isMobileOpen, defaultOpeneds, isHovered, openSubmenu, toggleSubmenu, isActive, isChildActive } = useSidebar()
 
 </script>
@@ -78,6 +80,20 @@ const { menuGroups, isExpanded, activeMenu, isMobileOpen, defaultOpeneds, isHove
                             </li>
                         </ul>
 
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li>
+                                <button class="flex menu-item group w-full lg:justify-start text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md" @click="signOut">
+                                    <span class="menu-item-icon-inactive me-2">
+                                        <component :is="LogoutIcon" />
+                                    </span>
+
+                                    <span class="menu-item-text font-semibold" v-show="isExpanded || isHovered">Log Out</span>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>

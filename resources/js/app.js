@@ -26,6 +26,7 @@ createInertiaApp({
         return page
     },
   setup({ el, App, props, plugin }) {
+
     const app = createApp({ render: () => h(App, props) })
 
     app.component('Link', Link)

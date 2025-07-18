@@ -1,5 +1,5 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { GridIcon, UserCircleIcon } from '@/icons'
+import { GridIcon, UserCircleIcon, ListIcon, TaskIcon } from '@/icons'
 import { usePage } from '@inertiajs/vue3'
 
 const isMobile     = ref(false)
@@ -65,16 +65,14 @@ export function useSidebar() {
       {
         title: 'Menu',
         items: [
-          { name: 'Dashboard', icon: GridIcon, path: 'dashboard', permission: null },
+            { name: 'Dashboard', icon: GridIcon, path: 'user.dashboard', permission: null },
 
-          {
-            name: 'User Manage', icon: UserCircleIcon,
-            children: [
-              { name: 'Permissions', path: 'permissions', permission: 'permissions-read' },
-              { name: 'Roles',       path: 'roles',       permission: 'roles-read' },
-              { name: 'Users',       path: 'users',       permission: 'users-read' },
-            ],
-          },
+            {
+                name: 'Task Manage', icon: TaskIcon,
+                children: [
+                    { name: 'Tasks',       path: 'admin.tasks.index',       permission: null       },
+                ],
+            },
         ],
       },
     ]
@@ -97,25 +95,29 @@ export function useSidebar() {
     }))
   })
 
-  const isActive = (routes) => routes.includes(routeName.value)
+    const isActive = (routes) => routes.includes(routeName.value)
 
-  const activeMenu = computed(() => routeName.value)
+    const isChildActive = (children) => {
+        return children?.some(child => routeName.value === child.path)
+    }
 
-  const defaultOpeneds = computed(() => {
-    const current = routeName.value
-    const opened = []
+    const activeMenu = computed(() => routeName.value)
 
-    menuGroups.value.forEach((group, groupIndex) => {
-      group.items.forEach((item, itemIndex) => {
-        if (item.children) {
-          const match = item.children.find((child) => child.path === current)
-          if (match) opened.push(`${groupIndex}-${itemIndex}`)
-        }
-      })
+    const defaultOpeneds = computed(() => {
+        const current = routeName.value
+        const opened = []
+
+        menuGroups.value.forEach((group, groupIndex) => {
+            group.items.forEach((item, itemIndex) => {
+                if (item.children) {
+                    const match = item.children.find((child) => child.path === current)
+                    if (match) opened.push(`${groupIndex}-${itemIndex}`)
+                }
+            })
+        })
+
+        return opened
     })
-
-    return opened
-  })
 
   return {
     // States
@@ -126,6 +128,6 @@ export function useSidebar() {
     toggleSidebar, toggleMobileSidebar, setIsHovered, setActiveItem, toggleSubmenu,
 
     // Menu Data
-    menuGroups,activeMenu,defaultOpeneds,isActive,
+    menuGroups, activeMenu, defaultOpeneds, isActive, isChildActive
   }
 }
