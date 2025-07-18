@@ -39,3 +39,15 @@ app/
 │   └── Category.php
 │
 resources/js/                   # Vue 3 + Inertia frontend
+resources/js/                   # Vue 3 + Inertia frontend
+├── Adminend # Admin Dashboard Code
+├── Fronted # User Dashboard Code
+
+
+# 🧩 Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/shakib53626/6amTech.git
+cd 6amTech
