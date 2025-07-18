@@ -44,10 +44,10 @@ resources/js/                   # Vue 3 + Inertia frontend
 ├── Fronted # User Dashboard Code
 ```
 
-### 🧩 Setup Instructions
+# 🧩 Setup Instructions
 
-# 1️⃣ Clone the Repository
+### 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/shakib53626/6amTech.git
-cd 6amTech
+```
