@@ -112,7 +112,7 @@ composer dev
 http://localhost:8000
 ```
 
-🧩 Environment configuration details
+# 🧩 Environment configuration details
 ### Database Configuration
 ```bash
 DB_CONNECTION=mysql
