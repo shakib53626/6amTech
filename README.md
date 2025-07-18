@@ -51,3 +51,57 @@ resources/js/                   # Vue 3 + Inertia frontend
 ```bash
 git clone https://github.com/shakib53626/6amTech.git
 ```
+### 2️⃣ Move to Project Directory
+
+```bash
+cd 6amTech
+```
+### 3️⃣ Install PHP Dependencies
+
+```bash
+composer install
+```
+
+### 4️⃣ Install NPM Packages
+```bash
+npm install
+```
+
+### 5️⃣ Create and Configure .env
+```bash
+cp .env.example .env
+```
+
+Then configure the following in .env:
+-Database connection
+-JWT Secret:
+-Generate it via:
+```bash
+php artisan jwt:secret
+```
+
+### 6️⃣ Generate App Key
+```bash
+php artisan key:generate
+```
+
+### 7️⃣ Migrate your database
+```bash
+php artisan migrate:fresh --seed
+```
+
+### 8️⃣ Start the application
+
+You can run the project using either of the following methods:
+
+- **Method 1:** Run Laravel backend and frontend separately  
+```bash
+php artisan serve
+npm run dev
+```
+
+- **Method 2:** Run Laravel both a single command  
+```bash
+composer dev
+```
+
