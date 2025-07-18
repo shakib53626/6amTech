@@ -38,8 +38,7 @@ app/
 │   ├── Product.php
 │   └── Category.php
 │
-resources/js/                   # Vue 3 + Inertia frontend
-resources/js/                   # Vue 3 + Inertia frontend
+resources/js/                   # Vue 3 + Inertia frontend 
 ├── Adminend # Admin Dashboard Code
 ├── Fronted # User Dashboard Code
 ```
@@ -107,4 +106,8 @@ composer run dev
 Or
 ```bash
 composer dev
+```
+## After running, visit in your browser
+```bash
+http://localhost:8000
 ```
