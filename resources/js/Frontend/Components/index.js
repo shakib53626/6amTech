@@ -14,3 +14,5 @@ export { default as UserMenu         } from './Common/UserMenu.vue';
 export { default as TaskReportCard   } from './Dashboard/TaskReportCard.vue'
 export { default as MonthlySale      } from './Dashboard/MonthlySale.vue'
 export { default as RecentTask       } from './Dashboard/RecentTask.vue'
+
+export { default as ChangeTask       } from './Task/ChangeTask.vue'

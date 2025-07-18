@@ -16,12 +16,12 @@ export function useSidebar() {
   const permissions = computed(() => page.props.auth?.user?.permissions || [])
   const routeName   = computed(() => page.props.route?.name || '')
 
-  const handleResize = () => {
-    const mobile = window.innerWidth < 768
-    isMobile.value = mobile
+    const handleResize = () => {
+        const mobile = window.innerWidth < 768
+        isMobile.value = mobile
 
-    if (!mobile) isMobileOpen.value = false
-  }
+        if (!mobile) isMobileOpen.value = false
+    }
 
   onMounted(() => {
     handleResize()
@@ -70,7 +70,7 @@ export function useSidebar() {
             {
                 name: 'Task Manage', icon: TaskIcon,
                 children: [
-                    { name: 'Tasks',       path: 'admin.tasks.index',       permission: null       },
+                    { name: 'Tasks',       path: 'user.tasks.index',       permission: null       },
                 ],
             },
         ],

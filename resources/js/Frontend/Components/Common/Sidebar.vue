@@ -24,7 +24,7 @@ const { menuGroups, isExpanded, activeMenu, isMobileOpen, defaultOpeneds, isHove
         @mouseleave="isHovered = false"
     >
 
-        <div class="py-8 flex justify-start cursor-pointer" @click="$navigateTo('users.dashboard')">
+        <div class="py-8 flex justify-start cursor-pointer" @click="$navigateTo('user.dashboard')">
             <img class="dark:hidden" src="@/images/logo/logo.svg" alt="Logo" width="150" v-if="isExpanded || isHovered"/>
             <img class="dark:hidden" src="@/images/logo/logo-icon.png" alt="Logo" width="45" v-else/>
             <img class="hidden dark:block" src="@/images/logo/logo-dark.svg" alt="Logo" width="150" />
@@ -69,7 +69,7 @@ const { menuGroups, isExpanded, activeMenu, isMobileOpen, defaultOpeneds, isHove
                                     </button>
 
                                     <ul class="mt-2 ml-9 space-y-2" v-show="openSubmenu === `${groupIndex}-${itemIndex}` || defaultOpeneds.includes(`${groupIndex}-${itemIndex}`)" >
-                                        <li v-for="sub in item.children" :key="sub.name" class="menu-dropdown-item font-semibold text-gray-600 cursor-pointer hover:text-orange-400" @click="$navigateTo(sub.path)"
+                                        <li v-for="sub in item.children" :key="sub.name" class="menu-dropdown-item font-semibold text-gray-600 cursor-pointer hover:text-orange-400" @click="$navigateTo(sub.path, {'user_id': $page.props.auth.user?.id})"
                                             :class="{ 'text-orange-600': isActive(sub.path) }"
                                         >
                                             {{ sub.name }}

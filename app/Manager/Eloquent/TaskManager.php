@@ -18,12 +18,19 @@ class TaskManager implements TaskManagerInterface
 
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->input('search') . '%')
-                  ->orWhere('status', 'like', '%' . $request->input('search') . '%')
-                  ->orWhere('category', 'like', '%' . $request->input('search') . '%');
+                  ->orWhere('status', 'like', '%' . $request->input('search') . '%');
         }
 
         if ($request->filled('user_id')) {
             $query->where('user_id', $request->input('user_id'));
+        }
+
+        if ($request->filled('completed')) {
+            $query->where('completed', $request->input('completed'));
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->input('status'));
         }
 
         $tasks = $query->orderBy('created_at', 'desc')->with('user')->paginate($paginateSize);

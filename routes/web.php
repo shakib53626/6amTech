@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\User\DashboardController;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\TaskController;
+use App\Http\Controllers\User\DashboardController;
 
 // Guest routes
 Route::middleware('guest')->group(function () {
@@ -25,4 +26,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Tasks
+    Route::prefix('/tasks')->name('tasks.')->controller(TaskController::class)->group(function () {
+        Route::get('/',          'index')->name('index');
+        Route::put('/{id}',      'update')->name('update');
+    });
 });
