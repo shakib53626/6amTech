@@ -100,8 +100,11 @@ php artisan serve
 npm run dev
 ```
 
-- **Method 2:** Run Laravel both a single command  
+- **Method 2:** Run Laravel backend and frontend a single command  
+```bash
+composer run dev
+```
+Or
 ```bash
 composer dev
 ```
-
