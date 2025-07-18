@@ -168,3 +168,64 @@ I added database indexes on frequently queried columns such as:
 ```base
 $table->string('name')->index();
 ```
+
+## 📘 API Documentation
+
+This project includes a full-featured RESTful API for task management, secured using JWT authentication. The API supports user registration, login, and CRUD operations for tasks.
+
+### 🔐 Authentication Endpoints
+
+| Method | Endpoint        | Description              | Auth Required |
+| ------ | --------------- | ------------------------ | ------------- |
+| POST   | `/api/register` | Register a new user      | ❌ No          |
+| POST   | `/api/login`    | Login and get JWT token  | ❌ No          |
+| POST   | `/api/logout`   | Invalidate current token | ✅ Yes         |
+
+### 🔑 JWT Token Usage
+
+After login, the token should be included in the `Authorization` header of all subsequent requests:
+
+```http
+Authorization: Bearer <your_token_here>
+```
+
+---
+
+### 📌 Task Management Endpoints
+
+| Method | Endpoint          | Description             | Auth Required |
+| ------ | ----------------- | ----------------------- | ------------- |
+| GET    | `/api/tasks`      | Get all tasks           | ✅ Yes         |
+| POST   | `/api/tasks`      | Create a new task       | ✅ Yes         |
+| PUT    | `/api/tasks/{id}` | Update an existing task | ✅ Yes         |
+| DELETE | `/api/tasks/{id}` | Delete a task           | ✅ Yes         |
+
+#### ✅ Sample Task Request Payload:
+
+```json
+{
+  "title": "Finish Interview Task",
+  "description": "Implement all features and document them",
+  "priority": "High",
+  "completed": false,
+  "due_date": "2025-07-20",
+  "status": "In Progress",
+  "user_id": 1,
+  "category": "Development"
+}
+```
+
+---
+
+### 🧾 Swagger/OpenAPI Integration
+
+All the API endpoints are documented using **Swagger/OpenAPI**.
+
+You can visit the documentation UI at:
+
+```bash
+http://localhost:8000/api/documentation
+```
+
+Use the **Authorize 🔐** button to input your JWT token and test the protected endpoints directly from the Swagger interface.
+
