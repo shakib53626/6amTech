@@ -111,3 +111,29 @@ composer dev
 ```bash
 http://localhost:8000
 ```
+
+🧩 Environment configuration details
+### Database Configuration
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=6amtech
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### Swagger configuration
+
+```bash
+L5_SWAGGER_CONST_HOST=http://localhost:8000
+```
+
+### JWT Authenticaton Environment
+```bash
+JWT_SECRET=I3qd3uDP2JEKZYStxkUcpAiNi6wWJzhKtVcKM3iijTtdLN90kJTgyBL0crYfyyDd
+```
+Or
+```bash
+php artisan jwt:secret
+```
