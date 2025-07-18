@@ -137,3 +137,34 @@ Or
 ```bash
 php artisan jwt:secret
 ```
+
+# 🧩 Optimization Techniques (Task 3)
+To improve the performance of the Inventory Management System, the following optimization strategies were applied:
+
+## 1️⃣ Eager Loading (with with())
+Instead of using lazy loading, I used eager loading to prevent N+1 query problems.
+```bash
+    public function index($request)
+    {
+        $paginateSize = $request->input('paginate_size') ?? 50;
+
+        $query = Product::query()->with('category');
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->input('search') . '%')
+                  ->orWhere('sku', 'like', '%' . $request->input('search') . '%');
+        }
+
+        $products = $query->orderBy('created_at', 'desc')->paginate($paginateSize);
+
+        return [
+            'products'   => $products,
+            'categories' => Category::select('id', 'name')->get(),
+        ];
+    }
+```
+## 2️⃣ Indexing (on searchable fields)
+I added database indexes on frequently queried columns such as:
+```base
+$table->string('name')->index();
+```
