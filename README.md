@@ -33,7 +33,7 @@ app/
 │   ├── Requests/                # Form validation
 │   ├── Resources/               # API resources
 │   ├── Manager/                 # Interfaces
-│   ├── Manager/Elequent/        # CRUD main fanctality code
+│   ├── Manager/Elequent/        # CRUD main Logical code
 │
 ├── Models/
 │   ├── User.php
