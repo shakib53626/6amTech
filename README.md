@@ -32,6 +32,8 @@ app/
 │   ├── Controllers/             # Web/Inertia controllers
 │   ├── Requests/                # Form validation
 │   ├── Resources/               # API resources
+│   ├── Manager/                 # Interfaces
+│   ├── Manager/Elequent/        # CRUD main fanctality code
 │
 ├── Models/
 │   ├── User.php
