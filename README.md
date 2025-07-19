@@ -114,7 +114,7 @@ composer dev
 
 ### Need to image file 
 ```bash
-php artisan storage🥂
+php artisan storage:link
 ```
 
 ### Admin Login Credentials
