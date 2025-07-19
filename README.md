@@ -34,9 +34,11 @@ app/
 │   ├── Resources/               # API resources
 │
 ├── Models/
+│   ├── User.php
 │   ├── Task.php
 │   ├── Product.php
 │   └── Category.php
+│   ├── Transaction.php
 │
 resources/js/                   # Vue 3 + Inertia frontend 
 ├── Adminend # Admin Dashboard Code
