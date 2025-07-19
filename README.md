@@ -112,6 +112,11 @@ Or
 composer dev
 ```
 
+### Need to image file 
+```bash
+php artisan storage🥂
+```
+
 ### Admin Login Credentials
 User : superadmin@gmail.com
 Password : password
