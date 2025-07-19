@@ -111,6 +111,16 @@ Or
 ```bash
 composer dev
 ```
+
+### Admin Login Credentials
+User : superadmin@gmail.com
+Password : password
+
+### User Login Credentials
+user : example@gmail.com
+password : password
+
+
 ## After running, visit in your browser
 ```bash
 http://localhost:8000
